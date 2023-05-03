@@ -8,14 +8,22 @@
 import SwiftUI
 
 struct ContentView: View {
+    @ObservedObject var exchangeStore = ExchangeStore()
     var body: some View {
         VStack {
-            Image(systemName: "globe")
-                .imageScale(.large)
-                .foregroundColor(.accentColor)
-            Text("Hello, world!")
+            ScrollView(.horizontal) {
+                LazyHStack {
+                    ForEach(exchangeStore.exchangeData) { data in
+                        CurrencyCardView(
+                            currencyCode: data.currencyCode,
+                            currencyName: data.currencyName,
+                            telegrahicTransferMiddle: data.telegragicTransferMiddle
+                        )
+                    }
+                }
+                .padding(16)
+            }
         }
-        .padding()
     }
 }
 
