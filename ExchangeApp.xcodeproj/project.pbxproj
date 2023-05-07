@@ -10,6 +10,9 @@
 		492F791E29FE49AA00ED52A2 /* ExchangeModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 492F791D29FE49AA00ED52A2 /* ExchangeModel.swift */; };
 		492F792029FFAC2400ED52A2 /* ExchangeStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 492F791F29FFAC2400ED52A2 /* ExchangeStore.swift */; };
 		492F792529FFAFDF00ED52A2 /* CurrencyCardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 492F792429FFAFDF00ED52A2 /* CurrencyCardView.swift */; };
+		4951A5892A07798500771861 /* apikey.plist in Resources */ = {isa = PBXBuildFile; fileRef = 4951A5882A07798500771861 /* apikey.plist */; };
+		4951A58B2A077A2A00771861 /* APIKeys.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4951A58A2A077A2A00771861 /* APIKeys.swift */; };
+		4951A58E2A077A7500771861 /* PlistManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4951A58D2A077A7500771861 /* PlistManager.swift */; };
 		49F16E2B29E2AEA800568E49 /* ExchangeAppApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49F16E2A29E2AEA800568E49 /* ExchangeAppApp.swift */; };
 		49F16E2D29E2AEA800568E49 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49F16E2C29E2AEA800568E49 /* ContentView.swift */; };
 		49F16E2F29E2AEA900568E49 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 49F16E2E29E2AEA900568E49 /* Assets.xcassets */; };
@@ -20,6 +23,9 @@
 		492F791D29FE49AA00ED52A2 /* ExchangeModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExchangeModel.swift; sourceTree = "<group>"; };
 		492F791F29FFAC2400ED52A2 /* ExchangeStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExchangeStore.swift; sourceTree = "<group>"; };
 		492F792429FFAFDF00ED52A2 /* CurrencyCardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CurrencyCardView.swift; sourceTree = "<group>"; };
+		4951A5882A07798500771861 /* apikey.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = apikey.plist; sourceTree = "<group>"; };
+		4951A58A2A077A2A00771861 /* APIKeys.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIKeys.swift; sourceTree = "<group>"; };
+		4951A58D2A077A7500771861 /* PlistManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlistManager.swift; sourceTree = "<group>"; };
 		49F16E2729E2AEA800568E49 /* ExchangeApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ExchangeApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		49F16E2A29E2AEA800568E49 /* ExchangeAppApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExchangeAppApp.swift; sourceTree = "<group>"; };
 		49F16E2C29E2AEA800568E49 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -47,6 +53,15 @@
 			path = Model;
 			sourceTree = "<group>";
 		};
+		4951A58C2A077A6700771861 /* Tools */ = {
+			isa = PBXGroup;
+			children = (
+				4951A58A2A077A2A00771861 /* APIKeys.swift */,
+				4951A58D2A077A7500771861 /* PlistManager.swift */,
+			);
+			path = Tools;
+			sourceTree = "<group>";
+		};
 		49F16E1E29E2AEA800568E49 = {
 			isa = PBXGroup;
 			children = (
@@ -72,6 +87,8 @@
 				49F16E3029E2AEA900568E49 /* Preview Content */,
 				492F792129FFAD5D00ED52A2 /* Model */,
 				492F792429FFAFDF00ED52A2 /* CurrencyCardView.swift */,
+				4951A5882A07798500771861 /* apikey.plist */,
+				4951A58C2A077A6700771861 /* Tools */,
 			);
 			path = ExchangeApp;
 			sourceTree = "<group>";
@@ -143,6 +160,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				49F16E3229E2AEA900568E49 /* Preview Assets.xcassets in Resources */,
+				4951A5892A07798500771861 /* apikey.plist in Resources */,
 				49F16E2F29E2AEA900568E49 /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -154,6 +172,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				4951A58B2A077A2A00771861 /* APIKeys.swift in Sources */,
+				4951A58E2A077A7500771861 /* PlistManager.swift in Sources */,
 				492F791E29FE49AA00ED52A2 /* ExchangeModel.swift in Sources */,
 				492F792529FFAFDF00ED52A2 /* CurrencyCardView.swift in Sources */,
 				49F16E2D29E2AEA800568E49 /* ContentView.swift in Sources */,

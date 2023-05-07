@@ -25,7 +25,7 @@ struct CurrencyCardView: View {
                         .foregroundColor(.white)
                         .padding(.bottom, 2)
                         .frame(width: 100)
-                        .lineLimit(2)
+                        .lineLimit(1)
                         .multilineTextAlignment(.center)
                 }
                 HStack {
@@ -86,8 +86,9 @@ enum CurrencyType: String {
     case nok = "NOK"
     case myr = "MYR"
     case kwd = "KWD"
-    case jpy = "JPY"
-    case idr = "IDR"
+    case jpy = "JPY(100)"
+    case krw = "KRW"
+    case idr = "IDR(100)"
     case hkd = "HKD"
     case gbp = "GBP"
     case eur = "EUR"
@@ -122,6 +123,8 @@ enum CurrencyType: String {
             return "🇰🇼"
         case .jpy:
             return "🇯🇵"
+        case .krw:
+            return "🇰🇷"
         case .idr:
             return "🇮🇩"
         case .hkd:
