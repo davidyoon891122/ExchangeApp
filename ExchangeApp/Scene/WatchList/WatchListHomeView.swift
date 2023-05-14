@@ -9,6 +9,7 @@ import SwiftUI
 
 struct WatchListHomeView: View {
     @ObservedObject var exchangeStore = ExchangeStore()
+    @State private var isOpenSearch = false
     var body: some View {
         NavigationStack {
             ScrollView {
@@ -18,6 +19,17 @@ struct WatchListHomeView: View {
                     Spacer()
                 }
                 .navigationTitle("WatchList")
+                .toolbar {
+                    Button(action: {
+                        isOpenSearch = true
+                    }, label: {
+                        Image(systemName: "magnifyingglass")
+                            .tint(.black)
+                    })
+                }
+                .sheet(isPresented: $isOpenSearch) {
+                    SearchView()
+                }
             }
         }
     }
