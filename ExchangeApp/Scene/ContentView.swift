@@ -11,10 +11,10 @@ struct ContentView: View {
     @ObservedObject var exchangeStore = ExchangeStore()
     var body: some View {
         TabView {
-            HomeView()
+            WatchListHomeView()
                 .tabItem {
                     Image(systemName: "house")
-                    Text("Home")
+                    Text("WathList")
                 }
             Text("Pay")
                 .tabItem {

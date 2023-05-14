@@ -9,15 +9,13 @@ import SwiftUI
 
 struct WatchListView: View {
     var body: some View {
-        VStack(alignment: .leading) {
-            Text("WatchList")
-                .font(.largeTitle)
-                .bold()
-                .padding(.horizontal)
+        NavigationStack {
             ScrollView {
                 VStack {
                     ForEach(0..<10) { _ in
-                        WatchItemView(iconImageName: "bitcoin", itemName: "BTC", itemCode: "BTC", price: 26824.46, percent: 0.18)
+                        NavigationLink(destination: ItemDetailView()) {
+                            WatchItemView(iconImageName: "bitcoin", itemName: "BTC", itemCode: "BTC", price: 26824.46, percent: 0.18)
+                        }
                     }
                 }
             }
