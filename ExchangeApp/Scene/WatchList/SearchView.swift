@@ -8,8 +8,17 @@
 import SwiftUI
 
 struct SearchView: View {
+    @ObservedObject var coinMarketStore = CoinMarketStore()
     var body: some View {
-        Text("Search")
+        ScrollView {
+            Text("Search")
+            VStack {
+                ForEach(coinMarketStore.coinMarketData) { marketData in
+                    Text(marketData.english_name)
+
+                }
+            }
+        }
     }
 }
 

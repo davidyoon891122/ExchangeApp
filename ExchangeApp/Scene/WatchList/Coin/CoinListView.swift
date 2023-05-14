@@ -9,15 +9,17 @@ import SwiftUI
 
 struct CoinListView: View {
     var body: some View {
-        VStack(alignment: .leading) {
-            Text("Coin")
-                .font(.title)
-                .bold()
-                .padding(.horizontal)
-            ScrollView {
+        ScrollView {
+            VStack(alignment: .leading) {
+                Text("Coin")
+                    .font(.title)
+                    .bold()
+                    .padding(.horizontal)
+                
                 ForEach(1..<10) { value in
                     CoinView()
                 }
+
             }
         }
     }

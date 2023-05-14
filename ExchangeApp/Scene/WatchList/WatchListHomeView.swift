@@ -8,25 +8,25 @@
 import SwiftUI
 
 struct WatchListHomeView: View {
-    @ObservedObject var exchangeStore = ExchangeStore()
     @State private var isOpenSearch = false
     var body: some View {
         NavigationStack {
             ScrollView {
                 VStack {
-                    CurrencyView(exchangeStore: exchangeStore)
+                    CurrencyView()
                     WatchListView()
                     Spacer()
                 }
-                .navigationTitle("WatchList")
-                .toolbar {
-                    Button(action: {
-                        isOpenSearch = true
-                    }, label: {
-                        Image(systemName: "magnifyingglass")
-                            .tint(.black)
-                    })
-                }
+            }
+            .navigationTitle("WatchList")
+            .toolbar {
+                Button(action: {
+                    print("Called")
+                    isOpenSearch = true
+                }, label: {
+                    Image(systemName: "magnifyingglass")
+                        .tint(.black)
+                })
                 .sheet(isPresented: $isOpenSearch) {
                     SearchView()
                 }

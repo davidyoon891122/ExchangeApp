@@ -8,7 +8,6 @@
 import SwiftUI
 
 struct ContentView: View {
-    @ObservedObject var exchangeStore = ExchangeStore()
     var body: some View {
         TabView {
             WatchListHomeView()

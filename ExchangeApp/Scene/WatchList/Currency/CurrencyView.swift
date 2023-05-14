@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct CurrencyView: View {
-    @ObservedObject var exchangeStore: ExchangeStore
+    @ObservedObject var exchangeStore: ExchangeStore = ExchangeStore()
     var body: some View {
         NavigationStack {
             ScrollView(.horizontal) {
@@ -37,6 +37,6 @@ func deleteItem(at offset: IndexSet) {
 
 struct CurrencyView_Previews: PreviewProvider {
     static var previews: some View {
-        CurrencyView(exchangeStore: ExchangeStore())
+        CurrencyView()
     }
 }
