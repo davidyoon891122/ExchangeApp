@@ -11,13 +11,14 @@ struct HomeView: View {
     @ObservedObject var exchangeStore = ExchangeStore()
     var body: some View {
         NavigationStack {
-            VStack {
-                CurrencyView(exchangeStore: exchangeStore)
-                CoinListView()
-                Spacer()
-
+            ScrollView {
+                VStack {
+                    CurrencyView(exchangeStore: exchangeStore)
+                    WatchListView()
+                    Spacer()
+                }
+                .navigationTitle("Home")
             }
-            .navigationTitle("Home")
         }
     }
 }
