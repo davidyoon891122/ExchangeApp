@@ -32,7 +32,6 @@ class CoinMarketStore: ObservableObject {
 
     func refreshView() {
         coinMarketData = []
-        print("호출")
         Task {
             do {
                 let data = try await fetchCoinMarket()

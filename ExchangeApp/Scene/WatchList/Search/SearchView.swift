@@ -11,11 +11,16 @@ struct SearchView: View {
     @ObservedObject var coinMarketStore = CoinMarketStore()
     var body: some View {
         ScrollView {
-            Text("Search")
-            VStack {
+            VStack(alignment: .leading) {
+                Text("Search")
+                    .font(.largeTitle)
+                    .bold()
+                    .padding(.horizontal)
                 ForEach(coinMarketStore.coinMarketData) { marketData in
-                    Text(marketData.english_name)
-
+                    SearchItemView(
+                        itemCode: marketData.english_name,
+                        itemName: marketData.market
+                    )
                 }
             }
         }

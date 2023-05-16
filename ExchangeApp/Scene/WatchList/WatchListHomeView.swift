@@ -21,7 +21,6 @@ struct WatchListHomeView: View {
             .navigationTitle("WatchList")
             .toolbar {
                 Button(action: {
-                    print("Called")
                     isOpenSearch = true
                 }, label: {
                     Image(systemName: "magnifyingglass")
