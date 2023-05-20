@@ -9,20 +9,26 @@ import SwiftUI
 
 struct SearchView: View {
     @ObservedObject var coinMarketStore = CoinMarketStore()
+    @State var searchText: String = ""
     var body: some View {
-        ScrollView {
-            VStack(alignment: .leading) {
-                Text("Search")
-                    .font(.largeTitle)
-                    .bold()
-                    .padding(.horizontal)
-                ForEach(coinMarketStore.coinMarketData) { marketData in
-                    SearchItemView(
-                        itemCode: marketData.english_name,
-                        itemName: marketData.market
-                    )
+        NavigationStack {
+            ScrollView {
+                VStack(alignment: .leading) {
+                    ForEach(coinMarketStore.coinMarkets) { marketData in
+                        SearchItemView(
+                            itemCode: marketData.english_name,
+                            itemName: marketData.market
+                        )
+                    }
                 }
             }
+        }
+        .searchable(
+            text: $searchText,
+            placement: .navigationBarDrawer
+        )
+        .onChange(of: searchText) { newValue in
+            coinMarketStore.searchItem(item: newValue)
         }
     }
 }

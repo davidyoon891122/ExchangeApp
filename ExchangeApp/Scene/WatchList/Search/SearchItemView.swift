@@ -12,39 +12,45 @@ struct SearchItemView: View {
     var itemName: String
     var isLike: Bool = false
     var body: some View {
-        HStack {
-            Image("bitcoin")
-                .resizable()
-                .frame(width: 40, height: 40)
-            VStack {
-                HStack {
-                    Text(itemName)
-                        .font(.title2)
-                        .bold()
-                    Spacer()
-                    Text("Upbit")
-                        .font(.title2)
-                        .bold()
+        VStack {
+            HStack {
+                Image("bitcoin")
+                    .resizable()
+                    .frame(width: 30, height: 30)
+                VStack {
+                    HStack {
+                        Text(itemName)
+                            .font(.title3)
+                            .bold()
+                        Spacer()
+                        Text("Upbit")
+                            .font(.title3)
+                            .bold()
+                    }
+                    HStack {
+                        Text(itemCode)
+                            .foregroundColor(.gray)
+                            .font(.headline)
+                            .bold()
+                            .lineLimit(1)
+                        Spacer()
+                        Text("Crypto")
+                            .font(.headline)
+                    }
                 }
-                HStack {
-                    Text(itemCode)
-                        .foregroundColor(.gray)
-                        .font(.title3)
-                        .bold()
-                        .lineLimit(1)
-                    Spacer()
-                    Text("Crypto")
-                }
-                Divider()
-            }
-            .padding(.leading, 8)
-            Image(systemName: "star")
-                .resizable()
-                .frame(width: 30, height: 30)
-                .foregroundColor(.yellow)
                 .padding(.leading, 8)
+                Button(action: {
+                }, label: {
+                    Image(systemName: "star")
+                        .resizable()
+                        .frame(width: 25, height: 25)
+                        .foregroundColor(.yellow)
+                        .padding(.leading, 8)
+                })
+            }
+            .padding(.horizontal)
+            Divider()
         }
-        .padding(.horizontal)
     }
 }
 

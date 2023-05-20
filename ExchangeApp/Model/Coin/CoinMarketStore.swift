@@ -25,7 +25,7 @@ func fetchCoinMarket() async throws -> [CoinMarketModel] {
 
 class CoinMarketStore: ObservableObject {
     @Published var coinMarketData = coinMarketList
-
+    var coinMarkets: [CoinMarketModel] = []
     init() {
         refreshView()
     }
@@ -38,10 +38,23 @@ class CoinMarketStore: ObservableObject {
                 DispatchQueue.main.async { [weak self] in
                     guard let self = self else { return }
                     self.coinMarketData = data
+                    self.coinMarkets = data
                 }
             } catch {
                 print(error)
             }
+        }
+    }
+
+    func searchItem(item: String) {
+        if item.isEmpty {
+            coinMarkets = coinMarketData
+        } else {
+            let result = coinMarketData.filter {
+                $0.market.uppercased().contains(item.uppercased())
+                || $0.english_name.uppercased().contains(item.uppercased())
+            }
+            coinMarkets = result
         }
     }
 }
