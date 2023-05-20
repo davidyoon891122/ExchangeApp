@@ -19,27 +19,27 @@ struct WatchItemView: View {
             HStack {
                 Image(iconImageName)
                     .resizable()
-                    .frame(width: 40, height: 40)
+                    .frame(width: 30, height: 30)
                 VStack {
                     HStack {
                         Text(itemCode)
                             .foregroundColor(.black)
-                            .font(.title)
+                            .font(.title3)
                             .bold()
                         Spacer()
                         Text(String(format: "%.2f", price))
                             .foregroundColor(.black)
-                            .font(.title2)
+                            .font(.title3)
                             .bold()
                     }
                     HStack {
                         Text(itemName)
-                            .font(.title3)
+                            .font(.headline)
                             .foregroundColor(.gray)
 
                         Spacer()
                         Text(String(format: "-%.2f%%", percent))
-                            .font(.title3)
+                            .font(.headline)
                             .foregroundColor(.green)
                     }
                 }

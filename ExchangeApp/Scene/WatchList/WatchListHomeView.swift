@@ -9,6 +9,7 @@ import SwiftUI
 
 struct WatchListHomeView: View {
     @State private var isOpenSearch = false
+    @ObservedObject var watchListStore = WatchListStore()
     var body: some View {
         NavigationStack {
             ScrollView {
