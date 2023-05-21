@@ -10,7 +10,8 @@ import SwiftUI
 struct SearchItemView: View {
     var itemCode: String
     var itemName: String
-    var isLike: Bool = false
+    @State var isLike: Bool = false
+    var toggleAction: () -> Void
     var body: some View {
         VStack {
             HStack {
@@ -40,8 +41,10 @@ struct SearchItemView: View {
                 }
                 .padding(.leading, 8)
                 Button(action: {
+                    toggleAction()
+                    isLike.toggle()
                 }, label: {
-                    Image(systemName: "star")
+                    Image(systemName: isLike ? "star.fill" : "star")
                         .resizable()
                         .frame(width: 25, height: 25)
                         .foregroundColor(.yellow)
@@ -56,6 +59,8 @@ struct SearchItemView: View {
 
 struct SearchItemView_Previews: PreviewProvider {
     static var previews: some View {
-        SearchItemView(itemCode: "BTC", itemName: "BTC")
+        SearchItemView(itemCode: "BTC", itemName: "BTC", isLike: false, toggleAction: {
+            print("Toggle")
+        })
     }
 }

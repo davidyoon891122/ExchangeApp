@@ -9,15 +9,25 @@ import SwiftUI
 
 struct SearchView: View {
     @ObservedObject var coinMarketStore = CoinMarketStore()
+    @ObservedObject var watchListStore: WatchListStore
     @State var searchText: String = ""
     var body: some View {
         NavigationStack {
             ScrollView {
                 VStack(alignment: .leading) {
                     ForEach(coinMarketStore.coinMarkets) { marketData in
+                        let isLike = watchListStore.isLikeItem(code: marketData.market)
                         SearchItemView(
                             itemCode: marketData.english_name,
-                            itemName: marketData.market
+                            itemName: marketData.market,
+                            isLike: isLike,
+                            toggleAction: {
+                                if isLike {
+                                    watchListStore.removeItemFromWatchList(code: marketData.market)
+                                } else {
+                                    watchListStore.addItemToWatchList(code: marketData.market)
+                                }
+                            }
                         )
                     }
                 }
@@ -35,6 +45,6 @@ struct SearchView: View {
 
 struct SearchView_Previews: PreviewProvider {
     static var previews: some View {
-        SearchView()
+        SearchView(watchListStore: WatchListStore())
     }
 }

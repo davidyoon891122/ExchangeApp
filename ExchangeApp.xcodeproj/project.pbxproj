@@ -86,8 +86,8 @@
 		492F28182A0F131100C3B4EA /* WatchList */ = {
 			isa = PBXGroup;
 			children = (
-				492F281F2A10A80D00C3B4EA /* Currency */,
 				492F28192A0F145400C3B4EA /* WatchListHomeView.swift */,
+				492F281F2A10A80D00C3B4EA /* Currency */,
 				492F28252A10AB3B00C3B4EA /* Coin */,
 				492F28242A10AB3300C3B4EA /* WatchList */,
 				492F28342A10CAF500C3B4EA /* Search */,

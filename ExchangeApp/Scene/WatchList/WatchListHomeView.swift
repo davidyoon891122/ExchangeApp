@@ -27,8 +27,10 @@ struct WatchListHomeView: View {
                     Image(systemName: "magnifyingglass")
                         .tint(.black)
                 })
-                .sheet(isPresented: $isOpenSearch) {
-                    SearchView()
+                .sheet(isPresented: $isOpenSearch, onDismiss: {
+                    watchListStore.refreshView()
+                }) {
+                    SearchView(watchListStore: watchListStore)
                 }
             }
         }

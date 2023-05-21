@@ -42,6 +42,7 @@ func fetchTicker(codes: [String]) async throws -> [CoinTickerModel] {
 class WatchListStore: ObservableObject {
     var watchListData = watchList
     @Published var coinTickerData: [CoinTickerModel] = []
+
     init() {
         loadWatchList()
     }
@@ -72,5 +73,26 @@ class WatchListStore: ObservableObject {
                 print(error)
             }
         }
+    }
+
+    func addItemToWatchList(code: String) {
+        let watchListModel = WatchListModel(code: code)
+        watchListData.append(watchListModel)
+    }
+
+    func removeItemFromWatchList(code: String) {
+        watchListData = watchListData.filter {
+            $0.code != code
+        }
+    }
+
+    func isLikeItem(code: String) -> Bool {
+        var result = false
+        watchListData.forEach {
+            if $0.code == code {
+                result = true
+            }
+        }
+        return result
     }
 }
