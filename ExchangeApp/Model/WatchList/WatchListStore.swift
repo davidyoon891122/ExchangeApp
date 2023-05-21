@@ -41,7 +41,7 @@ func fetchTicker(codes: [String]) async throws -> [CoinTickerModel] {
 
 class WatchListStore: ObservableObject {
     var watchListData = watchList
-
+    @Published var coinTickerData: [CoinTickerModel] = []
     init() {
         loadWatchList()
     }
@@ -65,7 +65,9 @@ class WatchListStore: ObservableObject {
                 }
 
                 let tickers = try await fetchTicker(codes: result)
-                print(tickers)
+                DispatchQueue.main.async {
+                    self.coinTickerData = tickers
+                }
             } catch {
                 print(error)
             }

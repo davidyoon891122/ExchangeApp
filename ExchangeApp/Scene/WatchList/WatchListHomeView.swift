@@ -15,7 +15,7 @@ struct WatchListHomeView: View {
             ScrollView {
                 VStack {
                     CurrencyView()
-                    WatchListView()
+                    WatchListView(watchListStore: watchListStore)
                     Spacer()
                 }
             }

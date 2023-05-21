@@ -13,6 +13,7 @@ struct WatchItemView: View {
     var itemCode: String
     var price: Double
     var percent: Double
+    var change: String
     var body: some View {
 
         VStack {
@@ -27,8 +28,8 @@ struct WatchItemView: View {
                             .font(.title3)
                             .bold()
                         Spacer()
-                        Text(String(format: "%.2f", price))
-                            .foregroundColor(.black)
+                        Text(String(format: "%.f", price))
+                            .foregroundColor(change == "RISE" ? .red : .blue)
                             .font(.title3)
                             .bold()
                     }
@@ -38,9 +39,9 @@ struct WatchItemView: View {
                             .foregroundColor(.gray)
 
                         Spacer()
-                        Text(String(format: "-%.2f%%", percent))
+                        Text(String(format: "%.2f%%", percent))
                             .font(.headline)
-                            .foregroundColor(.green)
+                            .foregroundColor(change == "RISE" ? .red : .blue)
                     }
                 }
                 .padding(.leading, 8)
@@ -53,6 +54,6 @@ struct WatchItemView: View {
 
 struct WatchItemView_Previews: PreviewProvider {
     static var previews: some View {
-        WatchItemView(iconImageName: "bitcoin", itemName: "BTC", itemCode: "BTC", price: 26824.46, percent: 0.18)
+        WatchItemView(iconImageName: "bitcoin", itemName: "BTC", itemCode: "BTC", price: 26824.46, percent: 0.18, change: "RISE")
     }
 }

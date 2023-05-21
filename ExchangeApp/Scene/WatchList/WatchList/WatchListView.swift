@@ -8,13 +8,21 @@
 import SwiftUI
 
 struct WatchListView: View {
+    @ObservedObject var watchListStore: WatchListStore
     var body: some View {
         NavigationStack {
             ScrollView {
                 VStack {
-                    ForEach(0..<10) { _ in
+                    ForEach(watchListStore.coinTickerData) { item in
                         NavigationLink(destination: ItemDetailView()) {
-                            WatchItemView(iconImageName: "bitcoin", itemName: "BTC", itemCode: "BTC", price: 26824.46, percent: 0.18)
+                            WatchItemView(
+                                iconImageName: "bitcoin",
+                                itemName: item.market,
+                                itemCode: item.market,
+                                price: item.tradePrice,
+                                percent: ((item.tradePrice - item.prevClosingPrice) * 100) / item.prevClosingPrice ,
+                                change: item.change
+                            )
                         }
                     }
                 }
@@ -25,6 +33,6 @@ struct WatchListView: View {
 
 struct WatchListView_Previews: PreviewProvider {
     static var previews: some View {
-        WatchListView()
+        WatchListView(watchListStore: WatchListStore())
     }
 }
