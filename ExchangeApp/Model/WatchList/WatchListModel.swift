@@ -7,8 +7,8 @@
 
 import Foundation
 
-struct WatchListModel: Identifiable {
-    let id = UUID()
+struct WatchListModel: Codable, Identifiable {
+    var id = UUID()
     let code: String
 }
 

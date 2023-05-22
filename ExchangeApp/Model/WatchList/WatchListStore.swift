@@ -7,17 +7,10 @@
 
 import Foundation
 
-func fetchWatchList() async throws -> [WatchListModel] {
-    return [
-        WatchListModel(code: "KRW-BTC"),
-        WatchListModel(code: "KRW-ETH"),
-        WatchListModel(code: "KRW-SC"),
-        WatchListModel(code: "KRW-ETC"),
-        WatchListModel(code: "KRW-CVC"),
-        WatchListModel(code: "KRW-XRP"),
-        WatchListModel(code: "KRW-WAVES"),
-        WatchListModel(code: "KRW-XEM")
-    ]
+func fetchWatchList() -> [WatchListModel] {
+    let interesetData = UserDefaultsManager.shared.loadData()
+
+    return interesetData
 }
 
 func fetchTicker(codes: [String]) async throws -> [CoinTickerModel] {
@@ -48,14 +41,8 @@ class WatchListStore: ObservableObject {
     }
 
     func loadWatchList() {
-        Task {
-            do {
-                watchListData = try await fetchWatchList()
-                refreshView()
-            } catch {
-                print(error)
-            }
-        }
+        watchListData = fetchWatchList()
+        refreshView()
     }
 
     func refreshView() {
@@ -78,12 +65,14 @@ class WatchListStore: ObservableObject {
     func addItemToWatchList(code: String) {
         let watchListModel = WatchListModel(code: code)
         watchListData.append(watchListModel)
+        UserDefaultsManager.shared.saveData(items: watchListData)
     }
 
     func removeItemFromWatchList(code: String) {
         watchListData = watchListData.filter {
             $0.code != code
         }
+        UserDefaultsManager.shared.saveData(items: watchListData)
     }
 
     func isLikeItem(code: String) -> Bool {
