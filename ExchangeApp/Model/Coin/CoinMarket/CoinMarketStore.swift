@@ -25,7 +25,12 @@ func fetchCoinMarket() async throws -> [CoinMarketModel] {
 
 class CoinMarketStore: ObservableObject {
     @Published var coinMarketData = coinMarketList
-    var coinMarkets: [CoinMarketModel] = []
+    @Published var filteredCoinlist: [CoinMarketModel] = []
+    var krwList: [CoinMarketModel] = []
+    var btcList: [CoinMarketModel] = []
+    var usdtList: [CoinMarketModel] = []
+    var currentPaymentType: PaymentType = .krw
+
     init() {
         refreshView()
     }
@@ -38,7 +43,16 @@ class CoinMarketStore: ObservableObject {
                 DispatchQueue.main.async { [weak self] in
                     guard let self = self else { return }
                     self.coinMarketData = data
-                    self.coinMarkets = data
+                    coinMarketData.forEach {
+                        if $0.market.contains("KRW-") {
+                            self.krwList.append($0)
+                        } else if $0.market.contains("BTC-") {
+                            self.btcList.append($0)
+                        } else {
+                            self.usdtList.append($0)
+                        }
+                    }
+                    self.filteredCoinlist = self.krwList
                 }
             } catch {
                 print(error)
@@ -47,14 +61,38 @@ class CoinMarketStore: ObservableObject {
     }
 
     func searchItem(item: String) {
-        if item.isEmpty {
-            coinMarkets = coinMarketData
-        } else {
-            let result = coinMarketData.filter {
+        switch currentPaymentType {
+        case .krw:
+            filteredCoinlist = krwList
+        case .btc:
+            filteredCoinlist = btcList
+        case .usdt:
+            filteredCoinlist = usdtList
+        }
+        if !item.isEmpty {
+            let result = filteredCoinlist.filter {
                 $0.market.uppercased().contains(item.uppercased())
                 || $0.english_name.uppercased().contains(item.uppercased())
             }
-            coinMarkets = result
+            filteredCoinlist = result
         }
     }
+
+    func getCoinListByPaymentType(paymentType: PaymentType) {
+        currentPaymentType = paymentType
+        switch paymentType {
+        case .krw:
+            filteredCoinlist = krwList
+        case .btc:
+            filteredCoinlist = btcList
+        case .usdt:
+            filteredCoinlist = usdtList
+        }
+    }
+}
+
+enum PaymentType: String {
+    case krw = "KRW"
+    case btc = "BTC"
+    case usdt = "USDT"
 }
