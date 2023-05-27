@@ -41,8 +41,8 @@ struct SearchItemView: View {
                 }
                 .padding(.leading, 8)
                 Button(action: {
-                    toggleAction()
-                    isLike.toggle()
+                        toggleAction()
+                        isLike.toggle()
                 }, label: {
                     Image(systemName: isLike ? "star.fill" : "star")
                         .resizable()

@@ -9,7 +9,8 @@ import SwiftUI
 
 struct WatchListHomeView: View {
     @State private var isOpenSearch = false
-    @ObservedObject var watchListStore = WatchListStore()
+    @State var watchListStore = WatchListStore()
+    @State private var isShow = true
     var body: some View {
         NavigationStack {
             ScrollView {
@@ -23,14 +24,20 @@ struct WatchListHomeView: View {
             .toolbar {
                 Button(action: {
                     isOpenSearch = true
+                    withAnimation {
+                        isShow.toggle()
+                    }
                 }, label: {
                     Image(systemName: "magnifyingglass")
                         .tint(.black)
                 })
                 .sheet(isPresented: $isOpenSearch, onDismiss: {
                     watchListStore.refreshView()
+                    withAnimation {
+                        isShow.toggle()
+                    }
                 }) {
-                    SearchView(watchListStore: watchListStore)
+                    SearchView(watchListStore: $watchListStore)
                 }
             }
         }

@@ -9,7 +9,7 @@ import SwiftUI
 
 struct SearchView: View {
     @ObservedObject var coinMarketStore = CoinMarketStore()
-    @ObservedObject var watchListStore: WatchListStore
+    @Binding var watchListStore: WatchListStore
     @State var searchText: String = ""
     @State private var selectedSegment = 0
     private let segments = ["KRW", "BTC", "USDT"]
@@ -56,6 +56,6 @@ struct SearchView: View {
 
 struct SearchView_Previews: PreviewProvider {
     static var previews: some View {
-        SearchView(watchListStore: WatchListStore())
+        SearchView(watchListStore: .constant(WatchListStore()))
     }
 }
