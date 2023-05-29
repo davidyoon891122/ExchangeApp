@@ -62,7 +62,10 @@ class WatchListStore: ObservableObject {
                         itemCode: $0.market,
                         price: $0.tradePrice,
                         percent: (($0.tradePrice - $0.prevClosingPrice) * 100) / $0.prevClosingPrice,
-                        change: $0.change
+                        change: $0.change,
+                        openingPrice: $0.openingPrice,
+                        highPrice: $0.highPrice,
+                        lowPrice: $0.lowPrice
                     )
                 }
 

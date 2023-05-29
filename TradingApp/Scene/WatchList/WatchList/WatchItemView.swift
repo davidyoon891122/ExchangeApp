@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import Charts
 
 struct WatchItemView: View {
     var iconImageName: String
@@ -14,10 +15,35 @@ struct WatchItemView: View {
     var price: Double
     var percent: Double
     var change: String
+    var openingPrice: Double
+    var highPrice: Double
+    var lowPrice: Double
     var body: some View {
 
         VStack {
             HStack {
+                Chart {
+                    RectangleMark(
+                        x: .value("Data", ""),
+                        yStart: .value("Low", lowPrice),
+                        yEnd: .value("High", highPrice),
+                        width: 8
+                    )
+                    .foregroundStyle(.red)
+                    RectangleMark(
+                        x: .value("Date", ""),
+                        yStart: .value("Open", openingPrice),
+                        yEnd: .value("Close", price),
+                        width: 20
+                    )
+                    .foregroundStyle(.red)
+                }
+                .alignmentGuide(VerticalAlignment.center) {
+                    $0.height - 40
+                }
+                .chartXAxis(.hidden)
+                .chartYAxis(.hidden)
+                .frame(width: 30, height: 50)
                 Image(iconImageName)
                     .resizable()
                     .frame(width: 30, height: 30)
@@ -54,6 +80,16 @@ struct WatchItemView: View {
 
 struct WatchItemView_Previews: PreviewProvider {
     static var previews: some View {
-        WatchItemView(iconImageName: "bitcoin", itemName: "BTC", itemCode: "BTC", price: 26824.46, percent: 0.18, change: "RISE")
+        WatchItemView(
+            iconImageName: "bitcoin",
+            itemName: "BTC",
+            itemCode: "BTC",
+            price: 26824.46,
+            percent: 0.18,
+            change: "RISE",
+            openingPrice: 25000.000,
+            highPrice: 30000.000,
+            lowPrice: 20000.000
+        )
     }
 }

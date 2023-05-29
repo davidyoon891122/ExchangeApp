@@ -15,4 +15,7 @@ struct WatchItemModel: Identifiable {
     let price: Double
     let percent: Double
     let change: String
+    let openingPrice: Double
+    let highPrice: Double
+    let lowPrice: Double
 }

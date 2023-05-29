@@ -2,6 +2,6 @@
 <Workspace
    version = "1.0">
    <FileRef
-      location = "self:/Users/jiwonyoon/SwiftUI/ExchangeApp/TradingApp.xcodeproj">
+      location = "self:/Users/jiwonyoon/SwiftUI/TradingApp/TradingApp.xcodeproj">
    </FileRef>
 </Workspace>

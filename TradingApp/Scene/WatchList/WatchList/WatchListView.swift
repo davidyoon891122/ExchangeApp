@@ -21,7 +21,10 @@ struct WatchListView: View {
                                 itemCode: item.itemCode,
                                 price: item.price,
                                 percent: item.percent,
-                                change: item.change
+                                change: item.change,
+                                openingPrice: item.openingPrice,
+                                highPrice: item.highPrice,
+                                lowPrice: item.lowPrice
                             )
                         }
                     }
