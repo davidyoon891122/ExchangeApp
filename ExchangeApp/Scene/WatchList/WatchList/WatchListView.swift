@@ -13,14 +13,14 @@ struct WatchListView: View {
         NavigationStack {
             ScrollView {
                 VStack {
-                    ForEach(watchListStore.coinTickerData) { item in
+                    ForEach(watchListStore.watchItemData) { item in
                         NavigationLink(destination: ItemDetailView()) {
                             WatchItemView(
-                                iconImageName: "bitcoin",
-                                itemName: item.market,
-                                itemCode: item.market,
-                                price: item.tradePrice,
-                                percent: ((item.tradePrice - item.prevClosingPrice) * 100) / item.prevClosingPrice ,
+                                iconImageName: "etherium",
+                                itemName: item.itemName,
+                                itemCode: item.itemCode,
+                                price: item.price,
+                                percent: item.percent,
                                 change: item.change
                             )
                         }

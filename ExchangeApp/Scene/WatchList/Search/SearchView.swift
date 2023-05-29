@@ -34,9 +34,9 @@ struct SearchView: View {
                             isLike: isLike,
                             toggleAction: {
                                 if isLike {
-                                    watchListStore.removeItemFromWatchList(code: marketData.market)
+                                    watchListStore.removeItemFromWatchList(item: marketData)
                                 } else {
-                                    watchListStore.addItemToWatchList(code: marketData.market)
+                                    watchListStore.addItemToWatchList(item: marketData)
                                 }
                             }
                         )

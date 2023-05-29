@@ -27,6 +27,7 @@
 		492F792029FFAC2400ED52A2 /* ExchangeStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 492F791F29FFAC2400ED52A2 /* ExchangeStore.swift */; };
 		492F792529FFAFDF00ED52A2 /* CurrencyCardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 492F792429FFAFDF00ED52A2 /* CurrencyCardView.swift */; };
 		4938BBF92A248A4200224930 /* Extension+Double.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4938BBF82A248A4200224930 /* Extension+Double.swift */; };
+		4938BBFD2A248F8200224930 /* WathItemModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4938BBFC2A248F8200224930 /* WathItemModel.swift */; };
 		4951A5892A07798500771861 /* apikey.plist in Resources */ = {isa = PBXBuildFile; fileRef = 4951A5882A07798500771861 /* apikey.plist */; };
 		4951A58B2A077A2A00771861 /* APIKeys.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4951A58A2A077A2A00771861 /* APIKeys.swift */; };
 		4951A58E2A077A7500771861 /* PlistManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4951A58D2A077A7500771861 /* PlistManager.swift */; };
@@ -57,6 +58,7 @@
 		492F791F29FFAC2400ED52A2 /* ExchangeStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExchangeStore.swift; sourceTree = "<group>"; };
 		492F792429FFAFDF00ED52A2 /* CurrencyCardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CurrencyCardView.swift; sourceTree = "<group>"; };
 		4938BBF82A248A4200224930 /* Extension+Double.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Extension+Double.swift"; sourceTree = "<group>"; };
+		4938BBFC2A248F8200224930 /* WathItemModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WathItemModel.swift; sourceTree = "<group>"; };
 		4951A5882A07798500771861 /* apikey.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = apikey.plist; sourceTree = "<group>"; };
 		4951A58A2A077A2A00771861 /* APIKeys.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIKeys.swift; sourceTree = "<group>"; };
 		4951A58D2A077A7500771861 /* PlistManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlistManager.swift; sourceTree = "<group>"; };
@@ -160,6 +162,7 @@
 			children = (
 				492F28392A18572200C3B4EA /* WatchListModel.swift */,
 				492F283C2A1857C100C3B4EA /* WatchListStore.swift */,
+				4938BBFC2A248F8200224930 /* WathItemModel.swift */,
 			);
 			path = WatchList;
 			sourceTree = "<group>";
@@ -316,6 +319,7 @@
 				492F28212A10A8A200C3B4EA /* CoinListView.swift in Sources */,
 				492F28332A10B74500C3B4EA /* CoinMarketStore.swift in Sources */,
 				492F28382A10CB1200C3B4EA /* SearchItemView.swift in Sources */,
+				4938BBFD2A248F8200224930 /* WathItemModel.swift in Sources */,
 				492F28162A0F120A00C3B4EA /* CurrencyView.swift in Sources */,
 				4938BBF92A248A4200224930 /* Extension+Double.swift in Sources */,
 				492F283A2A18572200C3B4EA /* WatchListModel.swift in Sources */,

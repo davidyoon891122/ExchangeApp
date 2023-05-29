@@ -10,6 +10,7 @@ import Foundation
 struct WatchListModel: Codable, Identifiable {
     var id = UUID()
     let code: String
+    let engName: String
 }
 
 var watchList: [WatchListModel] = []

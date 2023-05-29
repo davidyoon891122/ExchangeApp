@@ -34,7 +34,7 @@ func fetchTicker(codes: [String]) async throws -> [CoinTickerModel] {
 
 class WatchListStore: ObservableObject {
     var watchListData = watchList
-    @Published var coinTickerData: [CoinTickerModel] = []
+    @Published var watchItemData: [WatchItemModel] = []
 
     init() {
         loadWatchList()
@@ -53,8 +53,21 @@ class WatchListStore: ObservableObject {
                 }
                 
                 let tickers = try await fetchTicker(codes: result)
+
+                let watchItems = tickers.map {
+                    WatchItemModel(
+                        id: $0.id,
+                        iconImageName: "bitcoin",
+                        itemName: $0.market,
+                        itemCode: $0.market,
+                        price: $0.tradePrice,
+                        percent: (($0.tradePrice - $0.prevClosingPrice) * 100) / $0.prevClosingPrice,
+                        change: $0.change
+                    )
+                }
+
                 DispatchQueue.main.async {
-                    self.coinTickerData = tickers
+                    self.watchItemData = watchItems
                 }
             } catch {
                 print(error)
@@ -62,15 +75,15 @@ class WatchListStore: ObservableObject {
         }
     }
 
-    func addItemToWatchList(code: String) {
-        let watchListModel = WatchListModel(code: code)
-        watchListData.append(watchListModel)
+    func addItemToWatchList(item: CoinMarketModel) {
+
+        watchListData.append(WatchListModel(code: item.market, engName: item.english_name))
         UserDefaultsManager.shared.saveData(items: watchListData)
     }
 
-    func removeItemFromWatchList(code: String) {
+    func removeItemFromWatchList(item: CoinMarketModel) {
         watchListData = watchListData.filter {
-            $0.code != code
+            $0.code != item.market
         }
         UserDefaultsManager.shared.saveData(items: watchListData)
     }
