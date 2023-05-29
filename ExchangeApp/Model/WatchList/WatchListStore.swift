@@ -51,7 +51,7 @@ class WatchListStore: ObservableObject {
                 let result = watchListData.map {
                     $0.code
                 }
-
+                
                 let tickers = try await fetchTicker(codes: result)
                 DispatchQueue.main.async {
                     self.coinTickerData = tickers

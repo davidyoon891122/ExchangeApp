@@ -28,7 +28,7 @@ struct WatchItemView: View {
                             .font(.title3)
                             .bold()
                         Spacer()
-                        Text(String(format: "%.f", price))
+                        Text("\(price.setPricesByPaymentType(type: itemCode))")
                             .foregroundColor(change == "RISE" ? .red : .blue)
                             .font(.title3)
                             .bold()
