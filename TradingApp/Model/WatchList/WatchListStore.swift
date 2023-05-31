@@ -94,16 +94,35 @@ class WatchListStore: ObservableObject {
         for index in 0...items.count-1 {
             watchItems.append(
                 WatchItemModel(
-                id: items[index].id,
-                iconImageName: "bitcoin",
-                itemName: self.watchListData[index].engName,
-                itemCode: items[index].market,
-                price: items[index].tradePrice,
-                percent: ((items[index].tradePrice - items[index].prevClosingPrice) * 100) / items[index].prevClosingPrice,
-                change: items[index].change,
-                openingPrice: items[index].openingPrice,
-                highPrice: items[index].highPrice,
-                lowPrice: items[index].lowPrice
+                    id: items[index].id,
+                    iconImageName: "bitcoin",
+                    itemName: self.watchListData[index].engName,
+                    itemCode: items[index].market,
+                    tradeDate: items[index].tradeDate,
+                    tradeDateKst: items[index].tradeDateKst,
+                    tradeTimeKst: items[index].tradeTimeKst,
+                    tradeTimestamp: items[index].tradeTimestamp,
+                    price: items[index].tradePrice,
+                    percent: ((items[index].tradePrice - items[index].prevClosingPrice) * 100) / items[index].prevClosingPrice,
+                    change: items[index].change,
+                    openingPrice: items[index].openingPrice,
+                    highPrice: items[index].highPrice,
+                    lowPrice: items[index].lowPrice,
+                    prevClosingPrice: items[index].prevClosingPrice,
+                    changePrice: items[index].changePrice,
+                    changeRate: items[index].changeRate,
+                    signedChangePrice: items[index].signedChangePrice,
+                    signedChangeRate: items[index].signedChangeRate,
+                    tradeVolume: items[index].tradeVolume,
+                    accTradePrice: items[index].accTradePrice,
+                    accTradePrice24h: items[index].accTradePrice24h,
+                    accTradeVolume: items[index].accTradeVolume,
+                    accTradeVolume24h: items[index].accTradeVolume24h,
+                    highest52WeekPrice: items[index].highest52WeekPrice,
+                    highest52WeekDate: items[index].highest52WeekDate,
+                    lowest52WeekPrice: items[index].lowest52WeekPrice,
+                    lowest52WeekDate: items[index].lowest52WeekDate,
+                    timestamp: items[index].timestamp
                 )
             )
         }
