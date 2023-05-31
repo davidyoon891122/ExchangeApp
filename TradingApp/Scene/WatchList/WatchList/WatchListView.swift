@@ -14,7 +14,7 @@ struct WatchListView: View {
             ScrollView {
                 VStack {
                     ForEach(watchListStore.watchItemData) { item in
-                        NavigationLink(destination: ItemDetailView()) {
+                        NavigationLink(destination: ItemDetailView(item: item)) {
                             WatchItemView(
                                 iconImageName: "etherium",
                                 itemName: item.itemName,

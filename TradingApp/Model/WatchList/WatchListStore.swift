@@ -54,20 +54,7 @@ class WatchListStore: ObservableObject {
                 
                 let tickers = try await fetchTicker(codes: result)
 
-                let watchItems = tickers.map {
-                    WatchItemModel(
-                        id: $0.id,
-                        iconImageName: "bitcoin",
-                        itemName: $0.market,
-                        itemCode: $0.market,
-                        price: $0.tradePrice,
-                        percent: (($0.tradePrice - $0.prevClosingPrice) * 100) / $0.prevClosingPrice,
-                        change: $0.change,
-                        openingPrice: $0.openingPrice,
-                        highPrice: $0.highPrice,
-                        lowPrice: $0.lowPrice
-                    )
-                }
+                let watchItems = await createWatchItems(items: tickers)
 
                 DispatchQueue.main.async {
                     self.watchItemData = watchItems
@@ -99,5 +86,28 @@ class WatchListStore: ObservableObject {
             }
         }
         return result
+    }
+
+    func createWatchItems(items: [CoinTickerModel]) async -> [WatchItemModel] {
+        var watchItems: [WatchItemModel] = []
+
+        for index in 0...items.count-1 {
+            watchItems.append(
+                WatchItemModel(
+                id: items[index].id,
+                iconImageName: "bitcoin",
+                itemName: self.watchListData[index].engName,
+                itemCode: items[index].market,
+                price: items[index].tradePrice,
+                percent: ((items[index].tradePrice - items[index].prevClosingPrice) * 100) / items[index].prevClosingPrice,
+                change: items[index].change,
+                openingPrice: items[index].openingPrice,
+                highPrice: items[index].highPrice,
+                lowPrice: items[index].lowPrice
+                )
+            )
+        }
+
+        return watchItems
     }
 }
