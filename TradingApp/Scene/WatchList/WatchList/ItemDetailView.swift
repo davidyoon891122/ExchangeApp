@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import Charts
 
 struct ItemDetailView: View {
     @State var item: WatchItemModel
@@ -14,7 +15,7 @@ struct ItemDetailView: View {
         VStack {
             Image("bitcoin")
                 .resizable()
-                .frame(width: 50, height: 50)
+                .frame(width: 60, height: 60)
             Text(item.itemName)
                 .font(.body)
                 .bold()
@@ -28,7 +29,10 @@ struct ItemDetailView: View {
                 .bold()
                 .foregroundColor(.primary)
             HStack {
-                Text("\(item.changePrice.setPricesByPaymentType(type: item.itemCode))")
+                Text(item.change == "RISE"
+                     ? "+\(item.changePrice.setPricesByPaymentType(type: item.itemCode))"
+                     : "-\(item.changePrice.setPricesByPaymentType(type: item.itemCode))"
+                )
                     .font(.title2)
                     .bold()
                     .foregroundColor(item.change == "RISE" ? .red : .blue)
@@ -41,9 +45,48 @@ struct ItemDetailView: View {
                     .font(.callout)
                     .foregroundColor(item.change == "RISE" ? .red : .blue)
             }
+            ChartView(item: $item)
         }
     }
 }
+
+struct ChartView: View {
+    @Binding var item: WatchItemModel
+    @ObservedObject var coinChartStore: CoinChartStore
+    var chartType: ChartType = .month
+
+    init(item: Binding<WatchItemModel>) {
+        _item = item
+        _coinChartStore = ObservedObject(initialValue: CoinChartStore(code: item.wrappedValue.itemCode, count: "30", chartType: .month, minutes: nil))
+    }
+
+    var body: some View {
+        VStack {
+            HStack {
+                Chart {
+                    ForEach(coinChartStore.coinChartData) { item in
+                        RectangleMark(
+                            x: .value("Data", item.candle_date_time_kst),
+                            yStart: .value("Low", item.low_price),
+                            yEnd: .value("High", item.high_price),
+                            width: 4
+                        )
+                        .foregroundStyle(.red)
+                        RectangleMark(
+                            x: .value("Date", item.candle_date_time_kst),
+                            yStart: .value("Open", item.opening_price),
+                            yEnd: .value("Close", item.trade_price),
+                            width: 12
+                        )
+                        .foregroundStyle(.red)
+                    }
+                }
+                .frame(height: 400)
+            }
+        }
+    }
+}
+
 
 struct ItemDetailView_Previews: PreviewProvider {
     static var previews: some View {
