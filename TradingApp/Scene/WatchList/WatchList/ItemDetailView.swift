@@ -46,6 +46,7 @@ struct ItemDetailView: View {
                     .foregroundColor(item.change == "RISE" ? .red : .blue)
             }
             ChartView(item: $item)
+            Spacer()
         }
     }
 }
@@ -53,11 +54,11 @@ struct ItemDetailView: View {
 struct ChartView: View {
     @Binding var item: WatchItemModel
     @ObservedObject var coinChartStore: CoinChartStore
-    var chartType: ChartType = .month
+    @State var chartType: ChartType = .week
 
     init(item: Binding<WatchItemModel>) {
         _item = item
-        _coinChartStore = ObservedObject(initialValue: CoinChartStore(code: item.wrappedValue.itemCode, count: 30, chartType: .month, minutes: nil))
+        _coinChartStore = ObservedObject(initialValue: CoinChartStore(code: item.wrappedValue.itemCode, count: 30, chartType: .week, minutes: nil))
     }
 
     var body: some View {
@@ -81,8 +82,18 @@ struct ChartView: View {
                         .foregroundStyle(item.change == "RISE" ? .red : .blue)
                     }
                 }
-                .frame(height: 400)
+                .chartYScale(domain: coinChartStore.lowPrice...coinChartStore.highPrice)
+                .frame(height: 250)
             }
+        }
+        Picker("Chart Type", selection: $chartType) {
+            ForEach(ChartType.allCases, id: \.self) {
+                Text($0.rawValue)
+            }
+        }
+        .pickerStyle(.segmented)
+        .onChange(of: chartType) { type in
+            coinChartStore.requestChartData(chartType: type, item: item)
         }
     }
 }

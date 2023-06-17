@@ -48,15 +48,38 @@ func fetchCoinMonthChart(code: String, count: Int) async throws -> [CoinChartMod
     }
 }
 
-enum ChartType {
-    case minute
-    case day
-    case week
-    case month
+func fetchCoinWeekChart(code: String, count: Int) async throws -> [CoinChartModel] {
+
+    let url = URL(string: "https://api.upbit.com/v1/candles/weeks?market=\(code)&count=\(count + 1)")!
+
+    let (data, response) = try await URLSession.shared.data(from: url)
+
+    guard let httpResponse = response as? HTTPURLResponse,
+          httpResponse.statusCode == 200 else {
+        throw NetworkError.responseError
+    }
+
+    do {
+        let data = try JSONDecoder().decode([CoinChartModel].self, from: data)
+        return data
+    } catch {
+        print(error)
+        throw NetworkError.decodingError
+    }
+}
+
+
+enum ChartType: String, CaseIterable {
+    case minute = "Minute"
+    case day = "Day"
+    case week = "Week"
+    case month = "Month"
 }
 
 class CoinChartStore: ObservableObject {
     @Published var coinChartCommonData: [CoinChartCommonModel] = []
+    @Published var highPrice: Double = 0.0
+    @Published var lowPrice: Double = 0.0
 
     private var code: String
     private var count: Int
@@ -91,10 +114,18 @@ class CoinChartStore: ObservableObject {
                 case .day:
                     let data = try await fetchCoinMonthChart(code: code, count: count)
                 case .week:
-                    let data = try await fetchCoinMonthChart(code: code, count: count)
+                    let data = try await fetchCoinWeekChart(code: code, count: count)
+                    calculateMinMax(data: data)
+                    let commonData = generateCommonModel(data: data.reversed())
+
+                    DispatchQueue.main.async {
+                        [weak self] in
+                        guard let self = self else { return }
+                        self.coinChartCommonData = commonData
+                    }
                 case .month:
                     let data = try await fetchCoinMonthChart(code: code, count: count)
-
+                    calculateMinMax(data: data)
                     let commonData = generateCommonModel(data: data.reversed())
 
                     DispatchQueue.main.async {
@@ -112,6 +143,23 @@ class CoinChartStore: ObservableObject {
     }
 
     func calculateMinMax(data: [CoinChartModel]) {
+        var high = 0.0
+        var low = data.first?.low_price ?? 0.0
+
+        data.forEach { item in
+            if high < item.high_price {
+                high = item.high_price
+            }
+
+            if low > item.low_price {
+                low = item.low_price
+            }
+        }
+
+        DispatchQueue.main.async {
+            self.highPrice = high
+            self.lowPrice = low
+        }
 
     }
 
@@ -140,5 +188,52 @@ class CoinChartStore: ObservableObject {
         }
 
         return coinChartCommonModel
+    }
+
+    func requestChartData(chartType: ChartType, item: WatchItemModel) {
+        Task {
+            do {
+                switch chartType {
+                case .minute:
+                    if let minutes = self.minutes {
+                        let data = try await fetchCoinMinuteChart(code: item.itemCode, count: count, minutes: minutes)
+
+                        let commonData = generateCommonModel(data: data.reversed())
+
+                        DispatchQueue.main.async {
+                            [weak self] in
+                            guard let self = self else { return }
+                            self.coinChartCommonData = commonData
+                        }
+                    }
+                case .day:
+                    let data = try await fetchCoinMonthChart(code: item.itemCode, count: count)
+                case .week:
+                    let data = try await fetchCoinWeekChart(code: item.itemCode, count: count)
+                    calculateMinMax(data: data)
+                    let commonData = generateCommonModel(data: data.reversed())
+
+                    DispatchQueue.main.async {
+                        [weak self] in
+                        guard let self = self else { return }
+                        self.coinChartCommonData = commonData
+                    }
+                case .month:
+                    let data = try await fetchCoinMonthChart(code: item.itemCode, count: count)
+                    calculateMinMax(data: data)
+                    let commonData = generateCommonModel(data: data.reversed())
+
+                    DispatchQueue.main.async {
+                        [weak self] in
+                        guard let self = self else { return }
+                        self.coinChartCommonData = commonData
+                    }
+                }
+
+
+            } catch {
+                print(error)
+            }
+        }
     }
 }

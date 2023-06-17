@@ -100,5 +100,116 @@
             landmarkType = "9">
          </BreakpointContent>
       </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "4774A04E-7381-461D-A38D-8536788FC499"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "TradingApp/Model/Coin/CoinChart/CoinChartStore.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "202"
+            endingLineNumber = "202"
+            landmarkName = "requestChartData(chartType:item:)"
+            landmarkType = "7">
+            <Locations>
+               <Location
+                  uuid = "4774A04E-7381-461D-A38D-8536788FC499 - d9f0d72ee5c253bf"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "(3) suspend resume partial function for closure #1 @Sendable () async -&gt; () in TradingApp.CoinChartStore.requestChartData(chartType: TradingApp.ChartType, item: TradingApp.WatchItemModel) -&gt; ()"
+                  moduleName = "TradingApp"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/jiwonyoon/SwiftUI/TradingApp/TradingApp/Model/Coin/CoinChart/CoinChartStore.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "204"
+                  endingLineNumber = "204"
+                  offsetFromSymbolStart = "296">
+               </Location>
+               <Location
+                  uuid = "4774A04E-7381-461D-A38D-8536788FC499 - 595fa07004a8117f"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "closure #1 @Swift.MainActor @Sendable () -&gt; () in closure #1 @Sendable () async -&gt; () in TradingApp.CoinChartStore.requestChartData(chartType: TradingApp.ChartType, item: TradingApp.WatchItemModel) -&gt; ()"
+                  moduleName = "TradingApp"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/jiwonyoon/SwiftUI/TradingApp/TradingApp/Model/Coin/CoinChart/CoinChartStore.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "205"
+                  endingLineNumber = "205"
+                  offsetFromSymbolStart = "32">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "82DB261B-8EC2-490B-859A-6F0C1CB2605D"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "TradingApp/Model/Coin/CoinChart/CoinChartStore.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "194"
+            endingLineNumber = "194"
+            landmarkName = "requestChartData(chartType:item:)"
+            landmarkType = "7">
+            <Locations>
+               <Location
+                  uuid = "82DB261B-8EC2-490B-859A-6F0C1CB2605D - f208a5dd7e153de5"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "TradingApp.CoinChartStore.requestChartData(chartType: TradingApp.ChartType, item: TradingApp.WatchItemModel) -&gt; ()"
+                  moduleName = "TradingApp"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/jiwonyoon/SwiftUI/TradingApp/TradingApp/Model/Coin/CoinChart/CoinChartStore.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "195"
+                  endingLineNumber = "195"
+                  offsetFromSymbolStart = "168">
+               </Location>
+               <Location
+                  uuid = "82DB261B-8EC2-490B-859A-6F0C1CB2605D - f8d6d584ab33406b"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "closure #1 @Sendable () async -&gt; () in TradingApp.CoinChartStore.requestChartData(chartType: TradingApp.ChartType, item: TradingApp.WatchItemModel) -&gt; ()"
+                  moduleName = "TradingApp"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/jiwonyoon/SwiftUI/TradingApp/TradingApp/Model/Coin/CoinChart/CoinChartStore.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "195"
+                  endingLineNumber = "195"
+                  offsetFromSymbolStart = "272">
+               </Location>
+               <Location
+                  uuid = "82DB261B-8EC2-490B-859A-6F0C1CB2605D - 511623b417569e4c"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "(1) suspend resume partial function for closure #1 @Sendable () async -&gt; () in TradingApp.CoinChartStore.requestChartData(chartType: TradingApp.ChartType, item: TradingApp.WatchItemModel) -&gt; ()"
+                  moduleName = "TradingApp"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/jiwonyoon/SwiftUI/TradingApp/TradingApp/Model/Coin/CoinChart/CoinChartStore.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "195"
+                  endingLineNumber = "195"
+                  offsetFromSymbolStart = "136">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
    </Breakpoints>
 </Bucket>
