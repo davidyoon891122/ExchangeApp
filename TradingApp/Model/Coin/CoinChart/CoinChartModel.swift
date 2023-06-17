@@ -40,5 +40,5 @@ struct CoinChartCommonModel: Identifiable {
     let timestamp: Int
     let candle_acc_trade_price: Double
     let candle_acc_trade_volume: Double
-    let date: String
+    let change: String?
 }

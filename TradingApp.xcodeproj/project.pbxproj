@@ -149,9 +149,8 @@
 			isa = PBXGroup;
 			children = (
 				492F283E2A185C5400C3B4EA /* CoinMarket */,
-				492F283F2A185C7400C3B4EA /* CoinTickerModel.swift */,
-				49DF98D72A33FAE6005FB3C9 /* CoinChartStore.swift */,
-				49DF98D92A33FAEF005FB3C9 /* CoinChartModel.swift */,
+				49DF98DD2A341E95005FB3C9 /* CoinTicker */,
+				49DF98DE2A341E9C005FB3C9 /* CoinChart */,
 			);
 			path = Coin;
 			sourceTree = "<group>";
@@ -203,6 +202,23 @@
 				49DF98DB2A341996005FB3C9 /* Extension+String.swift */,
 			);
 			path = Tools;
+			sourceTree = "<group>";
+		};
+		49DF98DD2A341E95005FB3C9 /* CoinTicker */ = {
+			isa = PBXGroup;
+			children = (
+				492F283F2A185C7400C3B4EA /* CoinTickerModel.swift */,
+			);
+			path = CoinTicker;
+			sourceTree = "<group>";
+		};
+		49DF98DE2A341E9C005FB3C9 /* CoinChart */ = {
+			isa = PBXGroup;
+			children = (
+				49DF98D72A33FAE6005FB3C9 /* CoinChartStore.swift */,
+				49DF98D92A33FAEF005FB3C9 /* CoinChartModel.swift */,
+			);
+			path = CoinChart;
 			sourceTree = "<group>";
 		};
 		49F16E1E29E2AEA800568E49 = {

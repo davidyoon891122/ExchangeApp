@@ -57,28 +57,28 @@ struct ChartView: View {
 
     init(item: Binding<WatchItemModel>) {
         _item = item
-        _coinChartStore = ObservedObject(initialValue: CoinChartStore(code: item.wrappedValue.itemCode, count: "30", chartType: .month, minutes: nil))
+        _coinChartStore = ObservedObject(initialValue: CoinChartStore(code: item.wrappedValue.itemCode, count: 30, chartType: .month, minutes: nil))
     }
 
     var body: some View {
         VStack {
             HStack {
                 Chart {
-                    ForEach(coinChartStore.coinChartData) { item in
+                    ForEach(coinChartStore.coinChartCommonData) { item in
                         RectangleMark(
                             x: .value("Data", item.candle_date_time_kst),
                             yStart: .value("Low", item.low_price),
                             yEnd: .value("High", item.high_price),
                             width: 4
                         )
-                        .foregroundStyle(.red)
+                        .foregroundStyle(item.change == "RISE" ? .red : .blue)
                         RectangleMark(
                             x: .value("Date", item.candle_date_time_kst),
                             yStart: .value("Open", item.opening_price),
                             yEnd: .value("Close", item.trade_price),
                             width: 12
                         )
-                        .foregroundStyle(.red)
+                        .foregroundStyle(item.change == "RISE" ? .red : .blue)
                     }
                 }
                 .frame(height: 400)

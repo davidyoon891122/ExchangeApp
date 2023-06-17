@@ -8,9 +8,9 @@
 import Foundation
 import Combine
 
-func fetchCoinMinuteChart(code: String, count: String, minutes: String) async throws -> [CoinChartModel] {
+func fetchCoinMinuteChart(code: String, count: Int, minutes: String) async throws -> [CoinChartModel] {
 
-    let url = URL(string: "https://api.upbit.com/v1/candles/minutes/\(minutes)?market=\(code)&count=\(count)")!
+    let url = URL(string: "https://api.upbit.com/v1/candles/minutes/\(minutes)?market=\(code)&count=\(count + 1)")!
 
     let (data, response) = try await URLSession.shared.data(from: url)
 
@@ -28,9 +28,9 @@ func fetchCoinMinuteChart(code: String, count: String, minutes: String) async th
     }
 }
 
-func fetchCoinMonthChart(code: String, count: String) async throws -> [CoinChartModel] {
+func fetchCoinMonthChart(code: String, count: Int) async throws -> [CoinChartModel] {
 
-    let url = URL(string: "https://api.upbit.com/v1/candles/months?market=\(code)&count=\(count)")!
+    let url = URL(string: "https://api.upbit.com/v1/candles/months?market=\(code)&count=\(count + 1)")!
 
     let (data, response) = try await URLSession.shared.data(from: url)
 
@@ -56,14 +56,14 @@ enum ChartType {
 }
 
 class CoinChartStore: ObservableObject {
-    @Published var coinChartData: [CoinChartModel] = []
+    @Published var coinChartCommonData: [CoinChartCommonModel] = []
 
     private var code: String
-    private var count: String
+    private var count: Int
     private var minutes: String?
     private var chartType: ChartType
 
-    init(code: String, count: String, chartType: ChartType, minutes: String?) {
+    init(code: String, count: Int, chartType: ChartType, minutes: String?) {
         self.code = code
         self.count = count
         self.minutes = minutes
@@ -79,10 +79,13 @@ class CoinChartStore: ObservableObject {
                 case .minute:
                     if let minutes = self.minutes {
                         let data = try await fetchCoinMinuteChart(code: code, count: count, minutes: minutes)
+
+                        let commonData = generateCommonModel(data: data.reversed())
+
                         DispatchQueue.main.async {
                             [weak self] in
                             guard let self = self else { return }
-                            self.coinChartData = data
+                            self.coinChartCommonData = commonData
                         }
                     }
                 case .day:
@@ -91,10 +94,13 @@ class CoinChartStore: ObservableObject {
                     let data = try await fetchCoinMonthChart(code: code, count: count)
                 case .month:
                     let data = try await fetchCoinMonthChart(code: code, count: count)
+
+                    let commonData = generateCommonModel(data: data.reversed())
+
                     DispatchQueue.main.async {
                         [weak self] in
                         guard let self = self else { return }
-                        self.coinChartData = data.reversed()
+                        self.coinChartCommonData = commonData
                     }
                 }
 
@@ -107,5 +113,32 @@ class CoinChartStore: ObservableObject {
 
     func calculateMinMax(data: [CoinChartModel]) {
 
+    }
+
+    func generateCommonModel(data: [CoinChartModel]) -> [CoinChartCommonModel] {
+        var prev = 0
+        var coinChartCommonModel: [CoinChartCommonModel] = []
+
+        for index in 1..<data.count {
+            coinChartCommonModel.append(
+                CoinChartCommonModel(
+                    id: data[index].id,
+                    market: data[index].market,
+                    candle_date_time_utc: data[index].candle_date_time_utc,
+                    candle_date_time_kst: data[index].candle_date_time_kst,
+                    opening_price: data[index].opening_price,
+                    high_price: data[index].high_price,
+                    low_price: data[index].low_price,
+                    trade_price: data[index].trade_price,
+                    timestamp: data[index].timestamp,
+                    candle_acc_trade_price: data[index].candle_acc_trade_price,
+                    candle_acc_trade_volume: data[index].candle_acc_trade_volume,
+                    change: data[prev].trade_price < data[index].trade_price ? "RISE" : "FALL"
+                )
+            )
+            prev = index
+        }
+
+        return coinChartCommonModel
     }
 }
