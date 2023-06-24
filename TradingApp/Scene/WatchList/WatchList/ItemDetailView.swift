@@ -93,7 +93,7 @@ struct ChartView: View {
         }
         .pickerStyle(.segmented)
         .onChange(of: chartType) { type in
-            coinChartStore.requestChartData(chartType: type, item: item)
+            coinChartStore.requestChartData(chartType: type, itemCode: item.itemCode)
         }
     }
 }

@@ -82,41 +82,7 @@ class CoinChartStore: ObservableObject {
         self.minutes = minutes
         self.chartType = chartType
 
-        refreshView()
-    }
-
-    func refreshView() {
-        Task {
-            do {
-                var data: [CoinChartModel] = []
-
-                switch chartType {
-                case .minute:
-                    if let minutes = self.minutes {
-                        data = try await fetchCoinMinuteChart(code: code, count: count, minutes: minutes)
-                    }
-                case .day:
-                    data = try await fetchCoinChart(code: code, count: count, type: .day)
-                case .week:
-                    data = try await fetchCoinChart(code: code, count: count, type: .week)
-                case .month:
-                    data = try await fetchCoinChart(code: code, count: count, type: .month)
-                }
-
-                calculateMinMax(data: data)
-                let commonData = generateCommonModel(data: data.reversed())
-
-                DispatchQueue.main.async {
-                    [weak self] in
-                    guard let self = self else { return }
-                    self.coinChartCommonData = commonData
-                }
-
-
-            } catch {
-                print(error)
-            }
-        }
+        requestChartData(chartType: chartType, itemCode: code)
     }
 
     func calculateMinMax(data: [CoinChartModel]) {
@@ -167,7 +133,7 @@ class CoinChartStore: ObservableObject {
         return coinChartCommonModel
     }
 
-    func requestChartData(chartType: ChartType, item: WatchItemModel) {
+    func requestChartData(chartType: ChartType, itemCode: String) {
         Task {
             do {
                 var data: [CoinChartModel] = []
@@ -175,14 +141,14 @@ class CoinChartStore: ObservableObject {
                 switch chartType {
                 case .minute:
                     if let minutes = self.minutes {
-                        data = try await fetchCoinMinuteChart(code: item.itemCode, count: count, minutes: minutes)
+                        data = try await fetchCoinMinuteChart(code: itemCode, count: count, minutes: minutes)
                     }
                 case .day:
-                    data = try await fetchCoinChart(code: item.itemCode, count: count, type: .day)
+                    data = try await fetchCoinChart(code: itemCode, count: count, type: .day)
                 case .week:
-                    data = try await fetchCoinChart(code: item.itemCode, count: count, type: .week)
+                    data = try await fetchCoinChart(code: itemCode, count: count, type: .week)
                 case .month:
-                    data = try await fetchCoinChart(code: item.itemCode, count: count, type: .month)
+                    data = try await fetchCoinChart(code: itemCode, count: count, type: .month)
                 }
 
                 calculateMinMax(data: data)
