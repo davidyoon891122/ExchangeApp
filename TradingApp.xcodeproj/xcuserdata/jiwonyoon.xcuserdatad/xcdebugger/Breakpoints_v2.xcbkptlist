@@ -100,5 +100,117 @@
             landmarkType = "9">
          </BreakpointContent>
       </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "203E64C7-E9E3-4D1D-99A4-13ABC9DF6C18"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "TradingApp/Model/Coin/CoinChart/CoinChartStore.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "16"
+            endingLineNumber = "16"
+            landmarkName = "fetchCoinMinuteChart(code:count:minutes:)"
+            landmarkType = "9">
+            <Locations>
+               <Location
+                  uuid = "203E64C7-E9E3-4D1D-99A4-13ABC9DF6C18 - 3b6bb1b98bd10cff"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "(3) suspend resume partial function for TradingApp.fetchCoinMinuteChart(code: Swift.String, count: Swift.Int, minutes: Swift.String) async throws -&gt; Swift.Array&lt;TradingApp.CoinChartModel&gt;"
+                  moduleName = "TradingApp"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/jiwonyoon/SwiftUI/TradingApp/TradingApp/Model/Coin/CoinChart/CoinChartStore.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "17"
+                  endingLineNumber = "17"
+                  offsetFromSymbolStart = "208">
+               </Location>
+               <Location
+                  uuid = "203E64C7-E9E3-4D1D-99A4-13ABC9DF6C18 - 3b6bb1b98bd10cff"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "(3) suspend resume partial function for TradingApp.fetchCoinMinuteChart(code: Swift.String, count: Swift.Int, minutes: Swift.String) async throws -&gt; Swift.Array&lt;TradingApp.CoinChartModel&gt;"
+                  moduleName = "TradingApp"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/jiwonyoon/SwiftUI/TradingApp/TradingApp/Model/Coin/CoinChart/CoinChartStore.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "17"
+                  endingLineNumber = "17"
+                  offsetFromSymbolStart = "500">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "500EF00A-36F1-480C-97CE-9D9DDADD1329"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "TradingApp/Model/Coin/CoinChart/CoinChartStore.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "24"
+            endingLineNumber = "24"
+            landmarkName = "fetchCoinMinuteChart(code:count:minutes:)"
+            landmarkType = "9">
+            <Locations>
+               <Location
+                  uuid = "500EF00A-36F1-480C-97CE-9D9DDADD1329 - 3b6bb1b98bd11310"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "(3) suspend resume partial function for TradingApp.fetchCoinMinuteChart(code: Swift.String, count: Swift.Int, minutes: Swift.String) async throws -&gt; Swift.Array&lt;TradingApp.CoinChartModel&gt;"
+                  moduleName = "TradingApp"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/jiwonyoon/SwiftUI/TradingApp/TradingApp/Model/Coin/CoinChart/CoinChartStore.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "24"
+                  endingLineNumber = "24"
+                  offsetFromSymbolStart = "732">
+               </Location>
+               <Location
+                  uuid = "500EF00A-36F1-480C-97CE-9D9DDADD1329 - 3b6bb1b98bd11310"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "(3) suspend resume partial function for TradingApp.fetchCoinMinuteChart(code: Swift.String, count: Swift.Int, minutes: Swift.String) async throws -&gt; Swift.Array&lt;TradingApp.CoinChartModel&gt;"
+                  moduleName = "TradingApp"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/jiwonyoon/SwiftUI/TradingApp/TradingApp/Model/Coin/CoinChart/CoinChartStore.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "24"
+                  endingLineNumber = "24"
+                  offsetFromSymbolStart = "740">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "CD57F107-459A-4610-80F4-709CA179F58C"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "TradingApp/Model/Coin/CoinChart/CoinChartStore.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "112"
+            endingLineNumber = "112"
+            landmarkName = "generateCommonModel(data:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
    </Breakpoints>
 </Bucket>

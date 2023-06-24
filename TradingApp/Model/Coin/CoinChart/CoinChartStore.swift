@@ -73,16 +73,16 @@ class CoinChartStore: ObservableObject {
 
     private var code: String
     private var count: Int
-    private var minutes: String?
+    private var minutes: Int?
     private var chartType: ChartType
 
-    init(code: String, count: Int, chartType: ChartType, minutes: String?) {
+    init(code: String, count: Int, chartType: ChartType, minutes: Int?) {
         self.code = code
         self.count = count
         self.minutes = minutes
         self.chartType = chartType
 
-        requestChartData(chartType: chartType, itemCode: code)
+        requestChartData(chartType: chartType, itemCode: code, minutes: minutes)
     }
 
     func calculateMinMax(data: [CoinChartModel]) {
@@ -133,15 +133,15 @@ class CoinChartStore: ObservableObject {
         return coinChartCommonModel
     }
 
-    func requestChartData(chartType: ChartType, itemCode: String) {
+    func requestChartData(chartType: ChartType, itemCode: String, minutes: Int?) {
         Task {
             do {
                 var data: [CoinChartModel] = []
 
                 switch chartType {
                 case .minute:
-                    if let minutes = self.minutes {
-                        data = try await fetchCoinMinuteChart(code: itemCode, count: count, minutes: minutes)
+                    if let minutes = minutes {
+                        data = try await fetchCoinMinuteChart(code: itemCode, count: count, minutes: "\(minutes)")
                     }
                 case .day:
                     data = try await fetchCoinChart(code: itemCode, count: count, type: .day)

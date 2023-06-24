@@ -96,7 +96,11 @@ struct ChartView: View {
         }
         .pickerStyle(.segmented)
         .onChange(of: chartType) { type in
-            coinChartStore.requestChartData(chartType: type, itemCode: item.itemCode)
+            if type == .minute {
+                coinChartStore.requestChartData(chartType: type, itemCode: item.itemCode, minutes: 5)
+            } else {
+                coinChartStore.requestChartData(chartType: type, itemCode: item.itemCode, minutes: nil)
+            }
         }
     }
 }
