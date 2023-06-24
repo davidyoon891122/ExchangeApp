@@ -48,16 +48,22 @@ class WatchListStore: ObservableObject {
     func refreshView() {
         Task {
             do {
-                let result = watchListData.map {
-                    $0.code
-                }
-                
-                let tickers = try await fetchTicker(codes: result)
+                if watchListData.isEmpty {
+                    DispatchQueue.main.async {
+                        self.watchItemData = []
+                    }
+                } else {
+                    let result = watchListData.map {
+                        $0.code
+                    }
 
-                let watchItems = await createWatchItems(items: tickers)
+                    let tickers = try await fetchTicker(codes: result)
 
-                DispatchQueue.main.async {
-                    self.watchItemData = watchItems
+                    let watchItems = await createWatchItems(items: tickers)
+
+                    DispatchQueue.main.async {
+                        self.watchItemData = watchItems
+                    }
                 }
             } catch {
                 print(error)

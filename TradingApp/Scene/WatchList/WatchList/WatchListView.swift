@@ -13,19 +13,26 @@ struct WatchListView: View {
         NavigationStack {
             ScrollView {
                 VStack {
-                    ForEach(watchListStore.watchItemData) { item in
-                        NavigationLink(destination: ItemDetailView(item: item)) {
-                            WatchItemView(
-                                iconImageName: "etherium",
-                                itemName: item.itemName,
-                                itemCode: item.itemCode,
-                                price: item.price,
-                                percent: item.percent,
-                                change: item.change,
-                                openingPrice: item.openingPrice,
-                                highPrice: item.highPrice,
-                                lowPrice: item.lowPrice
-                            )
+                    if watchListStore.watchItemData.isEmpty {
+                        Spacer()
+                        Text("No items found.")
+                            .foregroundColor(.gray)
+                            .padding()
+                    } else {
+                        ForEach(watchListStore.watchItemData) { item in
+                            NavigationLink(destination: ItemDetailView(item: item)) {
+                                WatchItemView(
+                                    iconImageName: "etherium",
+                                    itemName: item.itemName,
+                                    itemCode: item.itemCode,
+                                    price: item.price,
+                                    percent: item.percent,
+                                    change: item.change,
+                                    openingPrice: item.openingPrice,
+                                    highPrice: item.highPrice,
+                                    lowPrice: item.lowPrice
+                                )
+                            }
                         }
                     }
                 }
