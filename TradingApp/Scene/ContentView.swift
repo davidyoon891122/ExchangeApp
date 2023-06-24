@@ -8,6 +8,7 @@
 import SwiftUI
 
 struct ContentView: View {
+    @Environment(\.colorScheme) var colorScheme
     var body: some View {
         TabView {
             WatchListHomeView()
@@ -36,11 +37,17 @@ struct ContentView: View {
                     Text("Menu")
                 }
         }
+        .background(colorScheme == .dark ? Color.black : Color.white)
     }
 }
 
 struct ContentView_Previews: PreviewProvider {
     static var previews: some View {
-        ContentView()
+        Group {
+            ContentView()
+
+            ContentView()
+                .environment(\.colorScheme, .dark)
+        }
     }
 }

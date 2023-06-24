@@ -11,6 +11,7 @@ struct WatchListHomeView: View {
     @State private var isOpenSearch = false
     @State var watchListStore = WatchListStore()
     @State private var isShow = true
+    @Environment(\.colorScheme) var colorScheme
     var body: some View {
         NavigationStack {
             ScrollView {
@@ -29,7 +30,7 @@ struct WatchListHomeView: View {
                     }
                 }, label: {
                     Image(systemName: "magnifyingglass")
-                        .tint(.black)
+                        .tint(colorScheme == .dark ? Color.white : Color.black)
                 })
                 .sheet(isPresented: $isOpenSearch, onDismiss: {
                     watchListStore.refreshView()
@@ -41,6 +42,7 @@ struct WatchListHomeView: View {
                 }
             }
         }
+        .background(Color(UIColor.systemBackground))
     }
 }
 
