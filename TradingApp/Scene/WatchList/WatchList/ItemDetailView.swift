@@ -12,41 +12,44 @@ struct ItemDetailView: View {
     @State var item: WatchItemModel
 
     var body: some View {
-        VStack {
-            Image("bitcoin")
-                .resizable()
-                .frame(width: 60, height: 60)
-            Text(item.itemName)
-                .font(.body)
-                .bold()
-                .foregroundColor(.primary)
-            Text(item.itemCode)
-                .font(.callout)
-                .bold()
-                .foregroundColor(.gray)
-            Text(String(format: "%.3f%", item.price))
-                .font(.largeTitle)
-                .bold()
-                .foregroundColor(.primary)
-            HStack {
-                Text(item.change == "RISE"
-                     ? "+\(item.changePrice.setPricesByPaymentType(type: item.itemCode))"
-                     : "-\(item.changePrice.setPricesByPaymentType(type: item.itemCode))"
-                )
-                    .font(.title2)
+        ScrollView {
+            VStack {
+                Image("bitcoin")
+                    .resizable()
+                    .frame(width: 60, height: 60)
+                Text(item.itemName)
+                    .font(.body)
                     .bold()
-                    .foregroundColor(item.change == "RISE" ? .red : .blue)
-                Text(String(format: "%.2f%%", item.percent))
-                    .font(.title2)
-                    .bold()
-                    .foregroundColor(item.change == "RISE" ? .red : .blue)
-                Text("today")
-                    .bold()
+                    .foregroundColor(.primary)
+                Text(item.itemCode)
                     .font(.callout)
-                    .foregroundColor(item.change == "RISE" ? .red : .blue)
+                    .bold()
+                    .foregroundColor(.gray)
+                Text(String(format: "%.3f%", item.price))
+                    .font(.largeTitle)
+                    .bold()
+                    .foregroundColor(.primary)
+                HStack {
+                    Text(item.change == "RISE"
+                         ? "+\(item.changePrice.setPricesByPaymentType(type: item.itemCode))"
+                         : "-\(item.changePrice.setPricesByPaymentType(type: item.itemCode))"
+                    )
+                        .font(.title2)
+                        .bold()
+                        .foregroundColor(item.change == "RISE" ? .red : .blue)
+                    Text(String(format: "%.2f%%", item.percent))
+                        .font(.title2)
+                        .bold()
+                        .foregroundColor(item.change == "RISE" ? .red : .blue)
+                    Text("today")
+                        .bold()
+                        .font(.callout)
+                        .foregroundColor(item.change == "RISE" ? .red : .blue)
+                }
+                ChartView(item: $item)
+                DetailInfoView(item: $item)
+                Spacer()
             }
-            ChartView(item: $item)
-            Spacer()
         }
     }
 }
@@ -95,6 +98,61 @@ struct ChartView: View {
         .onChange(of: chartType) { type in
             coinChartStore.requestChartData(chartType: type, itemCode: item.itemCode)
         }
+    }
+}
+
+struct DetailInfoView: View {
+    @Binding var item: WatchItemModel
+    var body: some View {
+        VStack {
+            Divider()
+            HStack {
+                Text("PREV")
+                    .bold()
+                Spacer()
+                Text(item.price.setPricesByPaymentType(type: item.itemName))
+                    .bold()
+            }
+            .padding(.top, 2)
+            HStack {
+                Text("OPEN")
+                    .bold()
+                Spacer()
+                Text(item.openingPrice.setPricesByPaymentType(type: item.itemName))
+                    .bold()
+            }
+            .padding(.top, 2)
+            HStack {
+                Text("VOLUME")
+                    .bold()
+                Spacer()
+                Text("\(item.tradeVolume)")
+                    .bold()
+            }
+            .padding(.top, 2)
+            HStack {
+                Text("52 Highest Price")
+                    .bold()
+                Text("(\(item.highest52WeekDate))")
+                    .bold()
+                Spacer()
+                Text(item.highest52WeekPrice.setPricesByPaymentType(type: item.itemName))
+                    .bold()
+            }
+            .padding(.top, 2)
+            HStack {
+                Text("52 Lowest Price")
+                    .bold()
+                Text("(\(item.lowest52WeekDate))")
+                    .bold()
+                Spacer()
+                Text(item.lowest52WeekPrice.setPricesByPaymentType(type: item.itemName))
+                    .bold()
+            }
+            .padding(.top, 2)
+            Divider()
+        }
+        .padding(.horizontal)
     }
 }
 
